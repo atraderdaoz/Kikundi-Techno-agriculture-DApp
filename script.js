@@ -81,53 +81,61 @@ function showStatus(element, message, isError = false) {
 
 // --- Web3 Connection & Data Fetching ---
 async function connectWallet() {
-    if (typeof window.ethereum !== 'undefined') {
-        try {
-            provider = new ethers.providers.Web3Provider(window.ethereum);
-            await provider.send("eth_requestAccounts", []); // Request account access
-            signer = provider.getSigner();
-            userAddress = await signer.getAddress();
+    // Check if ethers is defined first
+    if (typeof ethers === 'undefined') {
+        showStatus(connectionStatus, "Ethers.js library not loaded. Please check your internet connection or browser extensions.", true);
+        console.error("Ethers.js is not defined. Cannot proceed with Web3 operations.");
+        return; // Exit if ethers is not found
+    }
 
-            kktTokenContract = new ethers.Contract(KKT_TOKEN_ADDRESS, KKT_TOKEN_ABI, signer);
-            kktStakingContract = new ethers.Contract(KKT_STAKING_ADDRESS, KKT_STAKING_ABI, signer);
-
-            // Dynamically get KKT decimals
-            try {
-                kktDecimals = await kktTokenContract.decimals();
-            } catch (e) {
-                console.warn("Could not fetch KKT decimals from contract, defaulting to 18.", e);
-            }
-
-            showStatus(connectionStatus, "Wallet Connected!", false);
-            connectWalletBtn.textContent = 'Wallet Connected';
-            connectWalletBtn.disabled = true;
-
-            await updateWalletInfo(); // Initial info update
-
-            // Listen for account and chain changes
-            window.ethereum.on('accountsChanged', (accounts) => {
-                if (accounts.length === 0) {
-                    showStatus(connectionStatus, "Wallet disconnected.", true);
-                    resetWalletInfo();
-                } else {
-                    updateWalletInfo();
-                }
-            });
-
-            window.ethereum.on('chainChanged', (chainId) => {
-                showStatus(connectionStatus, "Network changed. Please refresh page.", true);
-                // For a more robust DApp, you'd handle network switching here
-                setTimeout(() => window.location.reload(), 2000);
-            });
-
-        } catch (error) {
-            console.error("Error connecting wallet:", error);
-            showStatus(connectionStatus, `Failed to connect wallet: ${error.message}`, true);
-        }
-    } else {
+    if (typeof window.ethereum === 'undefined') {
         showStatus(connectionStatus, "MetaMask is not installed. Please install it to use this DApp.", true);
         connectWalletBtn.textContent = 'Install MetaMask';
         connectWalletBtn.onclick = () => window.open("https://metamask.io/download.html", "_blank");
+        return; // Exit if MetaMask is not found
+    }
+
+    try {
+        provider = new ethers.providers.Web3Provider(window.ethereum);
+        await provider.send("eth_requestAccounts", []); // Request account access
+        signer = provider.getSigner();
+        userAddress = await signer.getAddress();
+
+        kktTokenContract = new ethers.Contract(KKT_TOKEN_ADDRESS, KKT_TOKEN_ABI, signer);
+        kktStakingContract = new ethers.Contract(KKT_STAKING_ADDRESS, KKT_STAKING_ABI, signer);
+
+        // Dynamically get KKT decimals
+        try {
+            kktDecimals = await kktTokenContract.decimals();
+        } catch (e) {
+            console.warn("Could not fetch KKT decimals from contract, defaulting to 18.", e);
+        }
+
+        showStatus(connectionStatus, "Wallet Connected!", false);
+        connectWalletBtn.textContent = 'Wallet Connected';
+        connectWalletBtn.disabled = true;
+
+        await updateWalletInfo(); // Initial info update
+
+        // Listen for account and chain changes
+        window.ethereum.on('accountsChanged', (accounts) => {
+            if (accounts.length === 0) {
+                showStatus(connectionStatus, "Wallet disconnected.", true);
+                resetWalletInfo();
+            } else {
+                updateWalletInfo();
+            }
+        });
+
+        window.ethereum.on('chainChanged', (chainId) => {
+            showStatus(connectionStatus, "Network changed. Please refresh page.", true);
+            // For a more robust DApp, you'd handle network switching here
+            setTimeout(() => window.location.reload(), 2000);
+        });
+
+    } catch (error) {
+        console.error("Error connecting wallet:", error);
+        showStatus(connectionStatus, `Failed to connect wallet: ${error.message}`, true);
     }
 }
 
@@ -384,6 +392,13 @@ function sendChatMessage() {
 
 // --- Event Listeners ---
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if ethers is defined before proceeding
+    if (typeof ethers === 'undefined') {
+        showStatus(connectionStatus, "Ethers.js library not loaded. Please check your internet connection or browser extensions.", true);
+        console.error("Ethers.js is not defined. Cannot initialize DApp functionality.");
+        return; // Stop execution if ethers is not available
+    }
+
     connectWalletBtn.addEventListener('click', connectWallet);
     approveBtn.addEventListener('click', approveStaking);
     stakeBtn.addEventListener('click', stakeTokens);
