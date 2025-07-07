@@ -1,1 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kikundi Techno-Agriculture DApp - Empowering Farmers with KKTToken</title>
+    <!-- Google Fonts for a premium look -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Link to external CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Ethers.js library for blockchain interaction -->
+    <script src="https://cdn.ethers.io/5.7.2/ethers.umd.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Kikundi Techno-Agriculture DApp</h1>
+        <p>Empowering Farmers, Cultivating Futures with <span style="color:var(--accent-gold); font-weight: bold;">KKTToken</span></p>
+    </header>
+
+    <div class="container">
+        <main>
+            <!-- Wallet Connection & Info -->
+            <section class="section wallet-info">
+                <h2>Your Kikundi Contribution</h2>
+                <p>Wallet Address: <span id="walletAddress">Not Connected</span></p>
+                <p>KKT Balance: <span id="kktBalance">0</span> KKT</p>
+                <p>Invested in Kikundi: <span id="stakedAmount">0</span> KKT</p>
+                <p>Projected Harvest Share: <span id="pendingRewards">0</span> KKT</p>
+                <button id="connectWalletBtn">Connect Wallet</button>
+                <p id="connectionStatus" class="status-message"></p>
+            </section>
+
+            <!-- KKTToken Market & Vision -->
+            <section id="chart-section" class="section">
+                <h2>KKTToken Market & Techno-Agri Vision</h2>
+                <div class="chart-placeholder">
+                    <p>Live KKTToken Market Chart (Embed from TradingView/CoinGecko)</p>
+                    <pre>&lt;!-- Example TradingView Widget Code --&gt;
+&lt;div class="tradingview-widget-container"&gt;
+  &lt;div id="tradingview_chart"&gt;&lt;/div&gt;
+  &lt;script type="text/javascript" src="https://s3.tradingview.com/tv.js"&gt;&lt;/script&gt;
+  &lt;script type="text/javascript"&gt;
+  new TradingView.widget(
+  {
+  "width": "100%",
+  "height": "400",
+  "symbol": "BINANCE:KKTUSDT", &lt;!-- Placeholder symbol, replace with actual KKT pair --&gt;
+  "interval": "D",
+  "timezone": "Etc/UTC",
+  "theme": "dark", &lt;!-- Dark theme to match DApp --&gt;
+  "style": "1",
+  "locale": "en",
+  "toolbar_bg": "#f1f3f6",
+  "enable_publishing": false,
+  "allow_symbol_change": true,
+  "container_id": "tradingview_chart"
+}
+  );
+  &lt;/script&gt;
+&lt;/div&gt;</pre>
+                </div>
+                <div class="video-embed">
+                    <p>Kikundi Techno-Agriculture Explainer Video (e.g., YouTube Embed)</p>
+                    <pre>&lt;!-- Example YouTube Embed Code --&gt;
+&lt;iframe width="100%" height="300" src="https://www.youtube.com/embed/YOUR_TECH_AGRI_VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;</pre>
+                </div>
+            </section>
+
+            <!-- Kikundi Growth Fund (Staking) & Tokenomics -->
+            <section id="staking-tokenomics-section" class="section">
+                <h2>Kikundi Growth Fund: Invest in Sustainable Agriculture</h2>
+
+                <h3>Support Kikundi Initiatives with KKT</h3>
+                <div class="staking-info">
+                    <div class="staking-metric">
+                        <div class="metric-value">15%</div>
+                        <div class="metric-label">Projected Annual Yield</div>
+                    </div>
+                    <div class="staking-metric">
+                        <div class="metric-value">500 Acres</div>
+                        <div class="metric-label">Technology-Enhanced Land</div>
+                    </div>
+                    <div class="staking-metric">
+                        <div class="metric-value">1,234,567 KKT</div>
+                        <div class="metric-label">Total KKT Committed to Growth</div>
+                    </div>
+                </div>
+                <div class="staking-controls">
+                    <input type="number" id="stakeAmount" placeholder="Amount to Contribute KKT" min="0.000001" step="any">
+                    <button id="approveBtn">Approve Contribution</button>
+                    <button id="stakeBtn">Commit KKT</button>
+                    <button id="unstakeBtn">Withdraw Contribution</button>
+                    <button id="claimRewardBtn">Claim Harvest Share</button>
+                    <p id="stakingStatus" class="status-message"></p>
+                </div>
+
+                <h3>KKT Tokenomics: Fueling Techno-Agriculture</h3>
+                <div class="tokenomics-details">
+                    <div class="tokenomic-item">
+                        <h3>Total Supply</h3>
+                        <p>1,000,000,000 KKT</p>
+                        <p style="font-size:0.8em; color: var(--light-gold);">Contract: `0x65513d9DBE2B9eBEC832E02745ea46f4f880Ce7A`</p>
+                    </div>
+                    <div class="tokenomic-item">
+                        <h3>Allocation for Growth</h3>
+                        <ul>
+                            <li>50% Farmer Incentives & Rewards</li>
+                            <li>20% Agricultural Tech Development</li>
+                            <li>15% Kikundi Operations & Outreach</li>
+                            <li>10% Market Linkages & Partnerships</li>
+                            <li>5% Community-Led Research</li>
+                        </ul>
+                    </div>
+                    <div class="tokenomic-item">
+                        <h3>KKT Utility in Agro-Tech</h3>
+                        <ul>
+                            <li>Fund Smart Farming Initiatives</li>
+                            <li>Access Shared Agricultural Machinery</li>
+                            <li>Participate in Decentralized Governance</li>
+                            <li>Incentivize Sustainable Practices</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Partnership & Innovation Proposals (RFP) -->
+            <section id="referral-rfp" class="section">
+                <h2>Partnership & Innovation Proposals for Kikundi Agro-Tech</h2>
+                <p>We invite innovators, technology providers, and agricultural experts to partner with Kikundi in advancing techno-agriculture. Submit your proposal to collaborate on groundbreaking projects.</p>
+                <p>Seeking proposals for:</p>
+                <ul>
+                    <li>Precision Agriculture Solutions (Sensors, Drones)</li>
+                    <li>Sustainable Farming Technologies</li>
+                    <li>Post-Harvest Processing Innovations</li>
+                    <li>Market Access & Supply Chain Optimization</li>
+                    <li>Capacity Building & Training Programs</li>
+                </ul>
+                <div class="rfp-form">
+                    <input type="text" id="rfpName" placeholder="Your Name/Organization">
+                    <input type="email" id="rfpEmail" placeholder="Your Email Address">
+                    <textarea id="rfpProposal" rows="6" placeholder="Describe your techno-agricultural solution or partnership proposal in detail."></textarea>
+                    <button id="submitRFPBtn">Submit Proposal</button>
+                    <p id="rfpStatus" class="status-message"></p>
+                </div>
+            </section>
+        </main>
+
+        <aside>
+            <!-- Kikundi Community Forum (Live Chat) -->
+            <section id="chat-section" class="section">
+                <h2>Kikundi Community Forum</h2>
+                <div id="chat-messages">
+                    <!-- Example Chat messages (dynamically loaded in real DApp) -->
+                    <div class="chat-message"><strong>Farmer_Ali:</strong> Just checked the soil moisture data, looking good for planting next week!</div>
+                    <div class="chat-message"><strong>Tech_Innovator:</strong> Anyone using drone imaging for crop health? Share your experiences!</div>
+                    <div class="chat-message"><strong>Kikundi_Leader:</strong> Remember our meeting on shared machinery maintenance tomorrow.</div>
+                    <div class="chat-message"><strong>Market_Link:</strong> New buyers interested in organic produce. Let's discuss quantities.</div>
+                    <div class="chat-message"><strong>KKT_Supporter:</strong> Proud to contribute to this amazing initiative!</div>
+                </div>
+                <div id="chat-input-area">
+                    <input type="text" id="chatInput" placeholder="Share your thoughts or questions...">
+                    <button id="sendChatBtn">Send</button>
+                </div>
+                <p style="font-size:0.8em; margin-top: 15px; color: grey;">*Real-time chat requires backend integration (e.g., WebSockets or Firebase)</p>
+            </section>
+
+            <!-- Owner Functions (Admin Section) -->
+            <section class="section owner-section" style="display:none;">
+                <h2>Admin: Kikundi Fund Management</h2>
+                <p style="font-size:0.9em; color: var(--light-gold);">Only visible to the Kikundi fund manager.</p>
+                <input type="number" id="fundAmount" placeholder="Amount to fund rewards" min="0.000001" step="any">
+                <button id="fundRewardsBtn">Fund Growth Pool</button>
+                <p id="fundStatus" class="status-message"></p>
+                <br>
+                <input type="number" id="rewardRate" placeholder="New Yield Rate (e.g., 1000)" min="0" step="1">
+                <button id="setRewardRateBtn">Set Yield Rate</button>
+                <p id="rateStatus" class="status-message"></p>
+            </section>
+        </aside>
+    </div>
+
+    <!-- Link to external JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
 
