@@ -1,0 +1,424 @@
+/* --- Global Variables for Theme --- */
+:root {
+    --primary-bg: #000000; /* Deep Black */
+    --secondary-bg: #1A1A1A; /* Slightly lighter black for sections */
+    --accent-gold: #FFD700; /* Pure Gold */
+    --light-gold: #FFECB3; /* Lighter gold for subtle highlights */
+    --text-light: #E0E0E0; /* Light grey for general text */
+    --text-dark: #333333; /* Dark text on gold elements */
+    --border-gold: rgba(255, 215, 0, 0.6); /* Semi-transparent gold for borders */
+    --shadow-gold: rgba(255, 215, 0, 0.2); /* Soft gold shadow */
+    --button-hover-gold: #CCAA00; /* Darker gold on hover */
+}
+
+/* --- Base Styles --- */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--primary-bg);
+    color: var(--text-light);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Header --- */
+header {
+    background-color: var(--secondary-bg);
+    padding: 20px 40px;
+    border-bottom: 2px solid var(--accent-gold);
+    text-align: center;
+    box-shadow: 0 4px 15px var(--shadow-gold);
+}
+
+header h1 {
+    font-family: 'Oswald', sans-serif;
+    color: var(--accent-gold);
+    font-size: 2.8em;
+    margin: 0;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px var(--shadow-gold);
+}
+
+header p {
+    font-size: 1.1em;
+    color: var(--text-light);
+    margin-top: 10px;
+}
+
+/* --- Main Container Layout --- */
+.container {
+    flex-grow: 1;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* Main content and sidebar */
+    gap: 40px;
+}
+
+/* --- Section Styling --- */
+.section {
+    background-color: var(--secondary-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 20px var(--shadow-gold);
+    transition: transform 0.3s ease-in-out;
+}
+
+.section:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    font-family: 'Oswald', sans-serif;
+    color: var(--accent-gold);
+    font-size: 2.2em;
+    border-bottom: 2px solid var(--border-gold);
+    padding-bottom: 15px;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    text-shadow: 0 0 8px var(--shadow-gold);
+}
+
+h3 {
+    font-family: 'Oswald', sans-serif;
+    color: var(--light-gold);
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/* --- General Input & Button Styles --- */
+input[type="text"],
+input[type="number"],
+input[type="email"],
+textarea {
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-gold);
+    color: var(--text-light);
+    padding: 12px 18px;
+    border-radius: 8px;
+    width: calc(100% - 36px); /* Account for padding */
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--accent-gold);
+    box-shadow: 0 0 8px var(--shadow-gold);
+}
+
+button {
+    background-color: var(--accent-gold);
+    color: var(--primary-bg);
+    border: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin: 10px 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 3px 10px var(--shadow-gold);
+}
+
+button:hover {
+    background-color: var(--button-hover-gold);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--shadow-gold);
+}
+
+button:disabled {
+    background-color: #555555;
+    color: #AAAAAA;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* --- Wallet Info --- */
+.wallet-info {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px var(--shadow-gold);
+}
+
+.wallet-info p {
+    margin: 8px 0;
+    font-size: 1.1em;
+}
+
+.wallet-info span {
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+/* --- Live Token Chart & Video --- */
+#chart-section .chart-placeholder,
+#chart-section .video-embed {
+    background-color: var(--primary-bg);
+    min-height: 300px; /* Min height for embeds */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2em;
+    border: 1px dashed var(--border-gold);
+    margin-bottom: 25px;
+    border-radius: 8px;
+    overflow: hidden; /* For iframe embeds */
+}
+
+#chart-section .chart-placeholder pre,
+#chart-section .video-embed pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.8em;
+    background-color: #0c0c0c;
+    padding: 15px;
+    border-radius: 5px;
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+}
+
+/* --- Staking Screen --- */
+.staking-info, .tokenomics-details {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.staking-metric, .tokenomic-item {
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 10px;
+    padding: 20px 25px;
+    margin: 15px;
+    text-align: center;
+    min-width: 200px;
+    flex: 1;
+    box-shadow: 0 2px 8px var(--shadow-gold);
+    transition: background-color 0.3s ease;
+}
+
+.staking-metric:hover, .tokenomic-item:hover {
+    background-color: #0a0a0a;
+}
+
+.metric-value {
+    color: var(--accent-gold);
+    font-size: 2.2em;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.metric-label {
+    font-size: 0.95em;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.staking-controls {
+    padding-top: 30px;
+    border-top: 1px solid var(--border-gold);
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.staking-controls input {
+    margin: 10px;
+    flex-grow: 1;
+    max-width: 200px;
+}
+
+/* --- Tokenomics --- */
+.tokenomic-item h3 {
+    color: var(--accent-gold);
+    margin-top: 0;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.tokenomic-item p, .tokenomic-item ul {
+    font-size: 0.9em;
+    color: var(--text-light);
+    margin: 5px 0;
+}
+
+.tokenomic-item ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tokenomic-item ul li {
+    position: relative;
+    padding-left: 15px;
+}
+
+.tokenomic-item ul li::before {
+    content: '•';
+    color: var(--accent-gold);
+    position: absolute;
+    left: 0;
+}
+
+/* --- Referral RFP --- */
+#referral-rfp p {
+    margin-bottom: 20px;
+    font-size: 1.05em;
+}
+
+#referral-rfp ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 25px;
+}
+
+#referral-rfp ul li {
+    color: var(--light-gold);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.rfp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.rfp-form button {
+    align-self: flex-start;
+    margin-left: 0;
+}
+
+/* --- Live Group Chat --- */
+#chat-section {
+    display: flex;
+    flex-direction: column;
+    height: 600px; /* Increased height for chat */
+}
+
+#chat-messages {
+    flex-grow: 1;
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    padding: 15px;
+    overflow-y: auto;
+    margin-bottom: 15px;
+    scroll-behavior: smooth;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+    padding: 8px 12px;
+    border-radius: 5px;
+    background-color: #2a2a2a; /* Slightly different background for messages */
+    word-wrap: break-word;
+}
+
+.chat-message strong {
+    color: var(--accent-gold);
+    margin-right: 8px;
+    font-weight: 700;
+}
+
+#chat-input-area {
+    display: flex;
+    gap: 10px;
+}
+
+#chat-input-area input {
+    flex-grow: 1;
+    margin-bottom: 0; /* Override default input margin */
+}
+
+#chat-input-area button {
+    margin: 0; /* Override default button margin */
+    padding: 12px 20px;
+}
+
+/* --- Status Messages --- */
+.status-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.status-message.success {
+    background-color: rgba(0, 128, 0, 0.2);
+    color: #00FF00;
+    border: 1px solid #00FF00;
+}
+
+.status-message.error {
+    background-color: rgba(255, 0, 0, 0.2);
+    color: #FF0000;
+    border: 1px solid #FF0000;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .container {
+        grid-template-columns: 1fr; /* Stack content on medium screens */
+        gap: 30px;
+    }
+    .staking-metric, .tokenomic-item {
+        min-width: 150px;
+        flex-basis: 45%; /* Two columns on smaller screens */
+    }
+    .staking-controls {
+        flex-direction: column;
+    }
+    .staking-controls input {
+        width: 80%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 576px) {
+    header h1 {
+        font-size: 2em;
+    }
+    h2 {
+        font-size: 1.8em;
+    }
+    .section {
+        padding: 20px;
+    }
+    .staking-metric, .tokenomic-item {
+        flex-basis: 100%; /* Single column on very small screens */
+        margin: 10px 0;
+    }
+    .staking-controls button {
+        width: 100%;
+        margin: 5px 0;
+    }
+    .rfp-form button {
+        width: 100%;
+    }
+}
